@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
@@ -40,21 +40,34 @@ let columns = [
         // Destructuring the array in the elements it has
         const [id, name, info] = tableMeta.rowData;
         return (
-          <>
-            <Link
-              to={{
-                pathname: "/edit-task",
-                state: {
-                  id: id,
-                  name: name,
-                  info: info,
-                },
-              }}
-            >
-              Edit task
-            </Link>
-            <Button onClick={(e) => handleDelete(e, id)}>Delete</Button>
-          </>
+          <Grid container spacing={2} alignContent="center">
+            <Grid item>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={{
+                  pathname: "/edit-task",
+                  state: {
+                    id: id,
+                    name: name,
+                    info: info,
+                  },
+                }}
+              >
+                <Button variant="contained" color="primary">
+                  Edit task
+                </Button>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={(e) => handleDelete(e, id)}
+              >
+                Delete
+              </Button>
+            </Grid>
+          </Grid>
         );
       },
     },

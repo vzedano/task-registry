@@ -68,6 +68,8 @@ export default (props) => {
     setInfo(e.target.value);
   };
 
+  const fontFamily = 'Courier, "Lucida Console", monospace';
+
   return (
     <Grid
       container
@@ -81,9 +83,9 @@ export default (props) => {
           {inputId ? `Updating task: ${initialName}` : "Creating a new task"}
         </h3>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={8}>
         <form onSubmit={props?.location?.state?.id ? updateTask : createTask}>
-          <FormControl>
+          <FormControl fullWidth>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <TextField
@@ -92,22 +94,28 @@ export default (props) => {
                   label="Task name"
                   fullWidth
                   onChange={handleNameChange}
+                  autoFocus
                   defaultValue={inputId ? name : ""}
+                  InputProps={{
+                    style: {
+                      fontFamily: fontFamily,
+                    },
+                  }}
                 ></TextField>
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  InputProps={{
-                    classes: {
-                      input: styles.textarea,
-                    },
-                  }}
                   label="Task information (multiline)"
                   multiline
                   fullWidth
                   variant="outlined"
                   onChange={handleInfoChange}
                   defaultValue={inputId ? info : ""}
+                  InputProps={{
+                    style: {
+                      fontFamily: fontFamily,
+                    },
+                  }}
                 ></TextField>
               </Grid>
               <Grid item xs={12}>

@@ -13,6 +13,10 @@ const handleDelete = async (e, id) => {
   }).then(document.location.reload());
 };
 
+let options = {
+  rowsPerPage: "100",
+};
+
 let columns = [
   {
     name: "_id",
@@ -30,6 +34,16 @@ let columns = [
           value.length >= 50 ? `${value.substring(0, 50)}...` : value;
         return displayValue;
       },
+    },
+  },
+  {
+    name: "updated_date",
+    label: "Last Updated",
+    options: {
+      sort: true,
+      sortDirection: "desc",
+      customBodyRender: (value, tableMeta, updateValue) =>
+        new Date(Date.parse(value)).toLocaleString(),
     },
   },
   {
@@ -75,5 +89,5 @@ let columns = [
 ];
 
 export default ({ tasks }) => {
-  return <MUIDataTable columns={columns} data={tasks} />;
+  return <MUIDataTable columns={columns} data={tasks} options={options} />;
 };

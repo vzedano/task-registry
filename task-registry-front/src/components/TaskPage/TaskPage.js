@@ -10,7 +10,6 @@ import {
   Grid,
 } from "@material-ui/core";
 import React from "react";
-import styles from "./TaskPage.module.css";
 import { useHistory } from "react-router-dom";
 
 const TASKS_URL = process.env.REACT_APP_TASKS_URL;

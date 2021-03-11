@@ -75,7 +75,7 @@ export default (props) => {
       spacing={0}
       align="center"
       justify="center"
-      style={{ marginTop: "20px" }}
+      style={{ marginTop: "5px" }}
     >
       <Grid item xs={12}>
         <h3>
@@ -110,6 +110,7 @@ export default (props) => {
                   variant="outlined"
                   onChange={handleInfoChange}
                   defaultValue={inputId ? info : ""}
+                  rows={17}
                   InputProps={{
                     style: {
                       fontFamily: fontFamily,

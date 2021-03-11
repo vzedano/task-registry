@@ -11,9 +11,9 @@ var theme = createMuiTheme({
     // MUIDataTableBodyRow: { root: { height: "0.1rem" } },
     MUIDataTableBodyCell: {
       root: {
-        padding: "0",
+        padding: "0.1rem",
         fontFamily: 'Courier, "Lucida Console", monospace',
-        fontSize: "100%",
+        // fontSize: "100%",
       },
     },
   },
@@ -38,14 +38,24 @@ let columns = [
       display: "false",
     },
   },
-  { name: "name", label: "Task name" },
+  {
+    name: "name",
+    label: "Task name",
+    options: {
+      customBodyRender: (value, tableMeta, updateValue) => {
+        let displayValue =
+          value.length >= 20 ? `${value.substring(0, 20)}...` : value;
+        return displayValue;
+      },
+    },
+  },
   {
     name: "info",
     label: "Task information",
     options: {
       customBodyRender: (value, tableMeta, updateValue) => {
         let displayValue =
-          value.length >= 50 ? `${value.substring(0, 50)}...` : value;
+          value.length >= 40 ? `${value.substring(0, 40)}...` : value;
         return displayValue;
       },
     },

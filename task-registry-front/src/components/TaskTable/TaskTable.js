@@ -21,10 +21,12 @@ var theme = createMuiTheme({
 
 const handleDelete = async (e, id) => {
   e.preventDefault();
-  console.log("Called delete on task " + id);
-  fetch(`${TASKS_URL}/tasks/${id}`, {
-    method: "DELETE",
-  }).then(document.location.reload());
+  if (window.confirm("Do you really want to delete this task?")) {
+    console.log("Called delete on task " + id);
+    fetch(`${TASKS_URL}/tasks/${id}`, {
+      method: "DELETE",
+    }).then(document.location.reload());
+  }
 };
 
 let options = {
@@ -91,7 +93,7 @@ let columns = [
                   },
                 }}
               >
-                <Button variant="contained" color="primary" size="small">
+                <Button variant="contained" size="small">
                   Edit task
                 </Button>
               </Link>

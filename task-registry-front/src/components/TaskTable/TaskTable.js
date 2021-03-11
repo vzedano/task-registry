@@ -2,8 +2,22 @@ import { Button, Grid } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 const TASKS_URL = process.env.REACT_APP_TASKS_URL;
+
+var theme = createMuiTheme({
+  overrides: {
+    // MUIDataTableBodyRow: { root: { height: "0.1rem" } },
+    MUIDataTableBodyCell: {
+      root: {
+        padding: "0",
+        fontFamily: 'Courier, "Lucida Console", monospace',
+        fontSize: "100%",
+      },
+    },
+  },
+});
 
 const handleDelete = async (e, id) => {
   e.preventDefault();
@@ -54,7 +68,7 @@ let columns = [
         // Destructuring the array in the elements it has
         const [id, name, info] = tableMeta.rowData;
         return (
-          <Grid container spacing={2} alignContent="center">
+          <Grid container alignContent="center">
             <Grid item>
               <Link
                 style={{ textDecoration: "none" }}
@@ -67,16 +81,18 @@ let columns = [
                   },
                 }}
               >
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" size="small">
                   Edit task
                 </Button>
               </Link>
             </Grid>
+            &nbsp;
             <Grid item>
               <Button
                 variant="contained"
                 color="secondary"
                 onClick={(e) => handleDelete(e, id)}
+                size="small"
               >
                 Delete
               </Button>
@@ -89,5 +105,9 @@ let columns = [
 ];
 
 export default ({ tasks }) => {
-  return <MUIDataTable columns={columns} data={tasks} options={options} />;
+  return (
+    <MuiThemeProvider theme={theme}>
+      <MUIDataTable columns={columns} data={tasks} options={options} />
+    </MuiThemeProvider>
+  );
 };

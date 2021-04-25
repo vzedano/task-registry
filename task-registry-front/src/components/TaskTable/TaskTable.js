@@ -1,7 +1,7 @@
 import { Button, Grid } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 const TASKS_URL = process.env.REACT_APP_TASKS_URL;

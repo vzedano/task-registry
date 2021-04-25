@@ -95,12 +95,14 @@ export default (props) => {
                   }}
                 ></TextField>
               </Grid>
-              <Grid item xs={12}>
-                <MUIRichTextEditor
-                  defaultValue={inputId ? info : ""}
-                  label="Task information (multiline)"
-                  onChange={handleInfoChange}
-                ></MUIRichTextEditor>
+              <Grid item xs={12} align="left">
+                <div style={{ minHeight: "85px" }}>
+                  <MUIRichTextEditor
+                    defaultValue={inputId ? initialInfo : ""}
+                    label="Task information (multiline)"
+                    onChange={handleInfoChange}
+                  ></MUIRichTextEditor>
+                </div>
               </Grid>
               <Grid item xs={12}>
                 <Button variant="contained" color="primary" type="submit">

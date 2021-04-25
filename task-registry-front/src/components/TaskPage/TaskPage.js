@@ -1,15 +1,8 @@
-import {
-  FormControl,
-  InputLabel,
-  FormHelperText,
-  Input,
-  Box,
-  Container,
-  TextField,
-  Button,
-  Grid,
-} from "@material-ui/core";
 import React from "react";
+
+import { FormControl, TextField, Button, Grid } from "@material-ui/core";
+import MUIRichTextEditor from "mui-rte";
+import { convertToRaw } from "draft-js";
 import { useHistory } from "react-router-dom";
 
 const TASKS_URL = process.env.REACT_APP_TASKS_URL;
@@ -64,7 +57,7 @@ export default (props) => {
   };
 
   let handleInfoChange = (e) => {
-    setInfo(e.target.value);
+    setInfo(JSON.stringify(convertToRaw(e.getCurrentContent())));
   };
 
   const fontFamily = 'Courier, "Lucida Console", monospace';
@@ -103,20 +96,11 @@ export default (props) => {
                 ></TextField>
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  label="Task information (multiline)"
-                  multiline
-                  fullWidth
-                  variant="outlined"
-                  onChange={handleInfoChange}
+                <MUIRichTextEditor
                   defaultValue={inputId ? info : ""}
-                  rows={17}
-                  InputProps={{
-                    style: {
-                      fontFamily: fontFamily,
-                    },
-                  }}
-                ></TextField>
+                  label="Task information (multiline)"
+                  onChange={handleInfoChange}
+                ></MUIRichTextEditor>
               </Grid>
               <Grid item xs={12}>
                 <Button variant="contained" color="primary" type="submit">

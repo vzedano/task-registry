@@ -30,7 +30,7 @@ const handleDelete = async (e, id) => {
 };
 
 let options = {
-  rowsPerPage: "100",
+  rowsPerPage: 100,
 };
 
 let columns = [
@@ -53,13 +53,8 @@ let columns = [
   },
   {
     name: "info",
-    label: "Task information",
     options: {
-      customBodyRender: (value, tableMeta, updateValue) => {
-        let displayValue =
-          value.length >= 40 ? `${value.substring(0, 40)}...` : value;
-        return displayValue;
-      },
+      display: "false",
     },
   },
   {
